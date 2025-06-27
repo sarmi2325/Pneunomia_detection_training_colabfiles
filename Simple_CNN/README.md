@@ -64,12 +64,6 @@ The goal of this project is to build a lightweight, interpretable Convolutional 
 **📊 Results**  
 - Accuracy: 94.20%  
 - AUC: 0.9848  
-- Class Metrics:  
-| Class       | Precision | Recall | F1-Score |
-|-------------|-----------|--------|----------|
-| Normal      | 0.95      | 0.94   | 0.94     |
-| Pneumonia   | 0.94      | 0.95   | 0.94     |  
-
 - Confusion Matrix:
 
   [[274, 19],
