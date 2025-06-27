@@ -10,24 +10,6 @@ The goal of this project is to build a lightweight, interpretable Convolutional 
 
 ---
 
-## Model Architecture (Common Base)
-
-
-model = tf.keras.Sequential([
-    tf.keras.layers.Rescaling(1./255, input_shape=(224, 224, 3)),
-    tf.keras.layers.Conv2D(32, (3, 3), activation='relu'),
-    tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Conv2D(64, (3, 3), activation='relu'),
-    tf.keras.layers.MaxPooling2D(),
-    tf.keras.layers.Flatten(),
-    tf.keras.layers.Dense(128, activation='relu'),
-    tf.keras.layers.Dropout(0.3),
-    tf.keras.layers.Dense(1, activation='sigmoid')
-])
-
----
-
-
 ## 🔬 Experimental Versions
 
 ### 🔁 Version 1: Baseline Simple CNN
@@ -42,6 +24,9 @@ model = tf.keras.Sequential([
 - AUC: 0.9800  
 - Confusion Matrix:  
 
+  [[260, 33],
+  [16, 277]]
+  
 **📌 Insights**  
 - High training accuracy (99.8%) vs validation (93%) → overfitting  
 - Pneumonia recall: 0.95  
@@ -57,7 +42,10 @@ model = tf.keras.Sequential([
 **📊 Results**  
 - Accuracy: 92.49%  
 - AUC: 0.9789  
-- Confusion Matrix:  
+- Confusion Matrix:
+
+  [[266, 27],
+  [17, 276]]
 
 **📌 Insights**  
 - Improved generalization (higher AUC/recall)  
@@ -81,7 +69,11 @@ model = tf.keras.Sequential([
 |-------------|-----------|--------|----------|
 | Normal      | 0.95      | 0.94   | 0.94     |
 | Pneumonia   | 0.94      | 0.95   | 0.94     |  
-- Confusion Matrix:  
+
+- Confusion Matrix:
+
+  [[274, 19],
+  [15, 278]]
 
 **📌 Insights**  
 - Balanced performance across classes  
@@ -96,6 +88,13 @@ model = tf.keras.Sequential([
 | Baseline           | 91.64%   | 0.9800 | High        | Initial model           |
 | + Data Augmentation| 92.49%   | 0.9789 | Moderate    | Better generalization   |
 | + L2 + EarlyStop   | **94.20%** | **0.9848** | **None** | Optimal regularization |
+
+| **Model Version**           | **Accuracy** | **Precision** | **Recall** | **F1-Score** | **AUC Score** |
+| --------------------------- | ------------ | ------------- | ---------- | ------------ | ------------- |
+| 🔹 **Baseline CNN**         | 91.64%       | 0.91          | 0.92       | 0.92         | 0.9800        |
+| 🔹 **+ Data Augmentation**  | 92.49%       | 0.93          | 0.92       | 0.92         | 0.9789        |
+| 🔹 **+ L2 + EarlyStopping** | **94.20%**   | **0.94**      | **0.94**   | **0.94**     | **0.9848**    |
+
 
 ## 📌 Final Takeaways
 1. **Regularization is critical** - L2 regularization and early stopping doubled accuracy gains from data augmentation alone  
